@@ -106,12 +106,14 @@ function initializeScriptureReferences() {
       <h4></h4>
       <button type="button" class="verse-popover__close" aria-label="Close verse popup">&times;</button>
     </div>
-    <p></p>
+    <div class="verse-popover__body">
+      <p></p>
+    </div>
   `;
   document.body.appendChild(popover);
 
   headerTitle = popover.querySelector('h4');
-  verseTextContainer = popover.querySelector('p');
+  verseTextContainer = popover.querySelector('.verse-popover__body p');
   closeButton = popover.querySelector('.verse-popover__close');
 
   references.forEach((ref) => {
