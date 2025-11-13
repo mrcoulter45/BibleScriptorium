@@ -1,0 +1,3 @@
+[submodule "bible-translations"]
+	path = bible-translations
+	url = git@github.com:jadenzaleski/bible-translations.git

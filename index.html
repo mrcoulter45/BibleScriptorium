@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bible Scriptorium</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <header>
+      <div class="hero">
+        <h1>Bible Scriptorium</h1>
+        <p>
+          A curated collection of doctrine-rich studies that invite believers to delight in God's Word,
+          walk in fellowship with Him, and anticipate eternal reward with steadfast hope.
+        </p>
+      </div>
+    </header>
+
+    <nav>
+      <a href="index.html" aria-current="page">Home</a>
+      <a href="lessons/fellowship-and-eternal-reward.html">Fellowship &amp; Eternal Reward</a>
+    </nav>
+
+    <main>
+      <div class="content-card">
+        <div class="translation-picker" data-translation-picker>
+          <label for="translation-select">Preferred Translation</label>
+          <select id="translation-select" name="translation-select"></select>
+          <p data-translation-helper>Verses will display using the selected translation. Default is NASB.</p>
+        </div>
+        <h2>Explore the Scriptorium</h2>
+        <p>
+          Each lesson is thoughtfully themed&mdash;tying visuals, tone, and typography to the topic&mdash;while keeping
+          Scripture at the center. References open as inline popovers so you can meditate on the Word
+          using your preferred translation without breaking your study flow.
+        </p>
+        <div class="lesson-grid">
+          <article class="lesson-card">
+            <a class="lesson-card__link" href="lessons/fellowship-and-eternal-reward.html">
+              <span class="lesson-tag">New</span>
+              <h3>Fellowship and Eternal Reward</h3>
+              <p>
+                Discover how confession restores fellowship with God, why the Spirit grieves yet never departs,
+                and how faithful walking impacts eternal reward in the New Jerusalem.
+              </p>
+              <p class="lesson-meta">Theme: Morning light over the New Jerusalem • Focus: Sanctification &amp; reward</p>
+            </a>
+          </article>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      Crafted for believers to study, worship, and walk in the light of Christ together.
+    </footer>
+
+    <script src="script.js" defer></script>
+  </body>
+</html>
