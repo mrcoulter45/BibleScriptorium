@@ -35,6 +35,15 @@ const TRANSLATION_STORAGE_KEY = 'preferredTranslation';
 
 let currentTranslation = DEFAULT_TRANSLATION;
 const translationCache = new Map();
+// Resolve paths relative to where the script is served (works on GitHub Pages subpaths)
+const SCRIPT_BASE_URL = (() => {
+  try {
+    const scriptUrl = document.currentScript?.src || window.location.href;
+    return new URL('.', scriptUrl);
+  } catch (error) {
+    return new URL('.', window.location.href);
+  }
+})();
 let popover;
 let headerTitle;
 let verseTextContainer;
@@ -256,7 +265,7 @@ async function loadTranslationData(code) {
     return translationCache.get(code);
   }
 
-  const url = new URL(`bible-translations/${code}/${code}_bible.json`, window.location.origin).toString();
+  const url = new URL(`bible-translations/${code}/${code}_bible.json`, SCRIPT_BASE_URL).toString();
   const response = await fetch(url, { cache: 'force-cache' });
   if (!response.ok) {
     throw new Error(`Failed to load ${code} translation (${response.status})`);
