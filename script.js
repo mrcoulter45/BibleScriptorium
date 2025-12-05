@@ -234,11 +234,30 @@ function displayPopover(label, text, translation, isError) {
 function positionPopover(target) {
   const targetRect = target.getBoundingClientRect();
   const popRect = popover.getBoundingClientRect();
-  let top = targetRect.bottom + window.scrollY + 12;
-  let left = targetRect.left + window.scrollX;
-
   const viewportWidth = window.innerWidth;
   const viewportHeight = window.innerHeight;
+
+  // On small screens use fixed positioning so the popover stays within the viewport.
+  const isMobile = window.matchMedia('(max-width: 768px)').matches;
+  if (isMobile) {
+    const horizontalPadding = 16;
+    const desiredTop = targetRect.bottom + 12;
+    const maxTop = viewportHeight - popRect.height - horizontalPadding;
+    const top = Math.max(horizontalPadding, Math.min(desiredTop, maxTop));
+    const centeredLeft = targetRect.left + targetRect.width / 2 - popRect.width / 2;
+    const left = Math.max(
+      horizontalPadding,
+      Math.min(centeredLeft, viewportWidth - popRect.width - horizontalPadding),
+    );
+    popover.style.position = 'fixed';
+    popover.style.transform = 'none';
+    popover.style.top = `${top}px`;
+    popover.style.left = `${left}px`;
+    return;
+  }
+
+  let top = targetRect.bottom + window.scrollY + 12;
+  let left = targetRect.left + window.scrollX;
 
   if (left + popRect.width > window.scrollX + viewportWidth - 20) {
     left = window.scrollX + viewportWidth - popRect.width - 20;
@@ -256,6 +275,8 @@ function positionPopover(target) {
     top = window.scrollY + 16;
   }
 
+  popover.style.position = 'absolute';
+  popover.style.transform = 'none';
   popover.style.top = `${top}px`;
   popover.style.left = `${left}px`;
 }
